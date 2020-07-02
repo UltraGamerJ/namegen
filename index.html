@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NameGen</title>
+</head>
+<body>
+
+	<div style="margin-left: auto; margin-right: auto; width: 25%; height: 40%; background-color: #b0b0b0; border: 1px solid #000; border-radius: 5px; text-align: center; font-size: 30px;">
+		<input type="button" name="gen" onclick="generate()" value="Generate">
+		<br>
+		<div id="names">
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		var consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
+		var consonantsBeginnings = ["b", "d", "f", "g", "h", "k", "l", "p", "r", "s", "t", "w"];
+		var consonantsEndings = ["d", "f", "k", "l", "m", "n", "r", "s", "t"];
+		var vowels = ["a", "e", "i", "o", "u"];
+		var consonantGroups = ["bl", "cl", "fl", "gl", "pl", "sl", "br", "cr", "dr", "fr", "gr", "pr", "tr", "sc", "sk", "sm", "sn", "sp", "st", "sw", "tw", ];
+		var vowelGroups = ["ae", "ai", "au", "ea", "ee", "ei", "eu", "ia", "ie", "iu", "oa", "oo", "ua", "ue", "uo"];
+		
+		function generate() {
+
+			var name = "";
+
+			if (Math.floor(Math.random() * 100) <= 60) {
+				name += consonantsBeginnings[Math.floor(Math.random() * consonantsBeginnings.length)];
+			} else {
+				name += consonantGroups[Math.floor(Math.random() * consonantGroups.length)];
+			}
+			if (Math.floor(Math.random() * 100) <= 60) {
+				name += vowels[Math.floor(Math.random() * vowels.length)];
+			} else {
+				name += vowelGroups[Math.floor(Math.random() * vowelGroups.length)];
+			}
+			if (Math.floor(Math.random() * 100) <= 60) {
+				name += consonants[Math.floor(Math.random() * consonants.length)];
+			} else {
+				name += consonantGroups[Math.floor(Math.random() * consonantGroups.length)];
+			}
+			if (Math.floor(Math.random() * 100) <= 30) {
+				name += vowels[Math.floor(Math.random() * vowels.length)];
+			} else {
+				name += vowelGroups[Math.floor(Math.random() * vowelGroups.length)];
+			}
+			name += consonantsEndings[Math.floor(Math.random() * consonantsEndings.length)];
+
+			var chars = name.split("");
+			var i = 0;
+			var capName = "";
+
+			chars.forEach(char => {
+
+					if (i == 0) {
+
+						char = char.toUpperCase();
+						capName += char;
+
+					} else {
+
+						capName += char;
+
+					}
+					i++;
+				}
+
+			);
+
+			document.getElementById("names").innerHTML += "<p>" + capName + "</p><br>";
+
+		}
+
+	</script>
+
+</body>
+</html>
